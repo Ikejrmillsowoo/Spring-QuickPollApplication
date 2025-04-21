@@ -1,9 +1,19 @@
 package io.zipcoder.tc_spring_poll_application.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Vote {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "VOTE_ID")
+    private Long id;
+
+    @ManyToMany
+    @JoinColumn(name = "VOTE_ID")
+    private List<Option> options;
 
     public Long getId() {
         return id;
@@ -13,21 +23,12 @@ public class Vote {
         this.id = id;
     }
 
-    public Option getOption() {
-        return option;
+    public List<Option> getOption() {
+        return options;
     }
 
     public void setOption(Option option) {
-        this.option = option;
+        this.options.add(option);
     }
-
-    @Id
-    @GeneratedValue
-    @Column(name = "VOTE_ID")
-    private Long id;
-
-    @ManyToMany
-    @JoinColumn(name = "VOTE_ID")
-    private Option option;
 
 }

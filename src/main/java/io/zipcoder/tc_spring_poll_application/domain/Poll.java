@@ -1,6 +1,5 @@
 package io.zipcoder.tc_spring_poll_application.domain;
 
-import org.springframework.core.annotation.Order;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,6 +11,14 @@ public class Poll {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "POLL_ID")
     private Long id;
+
+    @Column(name = "QUESTION")
+    private String question;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "POLL_ID")
+    @OrderBy
+    private Set<Option> options;
 
     public Long getId() {
         return id;
@@ -37,11 +44,4 @@ public class Poll {
         this.options = options;
     }
 
-    @Column(name = "QUESTION")
-    private String question;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "POLL_ID")
-    @OrderBy
-    private Set<Option> options;
 }

@@ -9,6 +9,9 @@ public class Option {
     @Column(name = "OPTION_ID")
     private Long id;
 
+    @Column(name = "OPTION_VALUE")
+    private String value;
+
     public Long getId() {
         return id;
     }
@@ -25,6 +28,4 @@ public class Option {
         this.value = value;
     }
 
-    @Column(name = "OPTION_VALUE")
-    private String value;
 }
